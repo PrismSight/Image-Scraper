@@ -18,3 +18,6 @@ Use Visual Studio 2019 to build the program from source code.
 * Make it so you have the option of downloading the images that are not in IMG tags as well?
 * Make it for mac/linux as well?
 * Make loading bar?
+
+### Credits
+Icon from: [OpenClipart-Vectors](https://pixabay.com/vectors/arrows-down-download-red-glossy-147745/)

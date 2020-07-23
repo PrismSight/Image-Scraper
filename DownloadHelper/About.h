@@ -173,7 +173,7 @@ namespace DownloadHelper {
 		this->Close();
 	}
 private: System::Void linkLabel1_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
-	System::Diagnostics::Process::Start("");
+	System::Diagnostics::Process::Start("https://github.com/PrismSight/Image-Scraper");
 }
 private: System::Void linkLabel2_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
 	System::Diagnostics::Process::Start("https://scriptweblog.com");
