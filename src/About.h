@@ -1,6 +1,6 @@
 #pragma once
 
-namespace DownloadHelper {
+namespace ImageScraper {
 
 	using namespace System;
 	using namespace System::ComponentModel;

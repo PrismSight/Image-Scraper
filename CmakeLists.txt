@@ -1,0 +1,28 @@
+cmake_minimum_required(VERSION 2.4)
+project ("ImageScraper")
+
+file(GLOB SOURCES "src/*")
+add_executable("${PROJECT_NAME}" ${SOURCES})
+
+# file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/img/arrow.ico DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/img)
+		
+# set_source_files_properties(img/arrow.ico src/ImageScraper.rc PROPERTIES LANGUAGE RC)
+
+
+# set_target_properties(${PROJECT_NAME} PROPERTIES COMMON_LANGUAGE_RUNTIME "")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /clr")
+target_compile_options("${PROJECT_NAME}" PRIVATE /clr)
+target_compile_options("${PROJECT_NAME}" PRIVATE /fp:precise)
+
+set_property(TARGET "${PROJECT_NAME}" PROPERTY VS_GLOBAL_ROOTNAMESPACE ${PROJECT_NAME})
+set_property(TARGET "${PROJECT_NAME}" PROPERTY VS_GLOBAL_KEYWORD "ManagedCProj")
+set_property(TARGET "${PROJECT_NAME}" PROPERTY VS_GLOBAL_CLRSupport "true")
+set_property(TARGET "${PROJECT_NAME}" PROPERTY VS_DOTNET_TARGET_FRAMEWORK_VERSION "v4.0")
+set_property(TARGET "${PROJECT_NAME}" PROPERTY VS_DOTNET_REFERENCES "System" "System.Data" "System.Drawing" "System.Windows.Forms" "System.Xml")
+string(REPLACE "/EHsc" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+string(REPLACE "/RTC1" "" CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}")
+
+add_definitions(-DUNICODE -D_UNICODE)
+
+#install(TARGETS "${PROJECT_NAME}" DESTINATION bin)
+#install(FILES "src/*" DESTINATION src)

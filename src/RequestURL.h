@@ -3,7 +3,7 @@
 #include "ImgScraper.h"
 #include "About.h"
 
-namespace DownloadHelper {
+namespace ImageScraper {
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -189,7 +189,7 @@ private: System::Void RequestURL_Load(System::Object^ sender, System::EventArgs^
 	textBox2->Text = stringCurrentDir;
 }
 private: System::Void linkLabel1_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
-	DownloadHelper::About^ AboutUs = gcnew DownloadHelper::About();
+	ImageScraper::About^ AboutUs = gcnew ImageScraper::About();
 	AboutUs->ShowDialog();
 }
 };
