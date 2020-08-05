@@ -62,7 +62,9 @@ std::vector<std::string> GetAllImgURLs(std::string URL)
 }
 bool DownloadImgFromURL(std::string URL, std::string Directory)
 {
-	std::string FileName = Directory + '\\' + URL.substr(URL.find_last_of("/")+1, URL.length()-1);
+	size_t PosOfLastDash = URL.find_last_of("/") + 1;
+	size_t PosOfQuestionMark = URL.find('?', PosOfLastDash);
+	std::string FileName = Directory + '\\' + URL.substr(PosOfLastDash, (PosOfQuestionMark == std::string::npos)? URL.length()-1 : PosOfQuestionMark - PosOfLastDash);
 	std::wstring FileNameW = std::wstring(FileName.begin(), FileName.end());
 	std::wstring stemp = std::wstring(URL.begin(), URL.end());
 
