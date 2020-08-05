@@ -175,11 +175,21 @@ namespace ImageScraper {
 			MessageBox::Show("ERROR: Bad Directory!");
 			return;
 		}
-		if (!DownloadImgFromURL(URL, Directory))
+		std::vector<std::string> URLS = GetAllImgURLs(URL);
+		if(URLS.size() <= 0)
 		{
-			MessageBox::Show("ERROR: No connection!");
+			MessageBox::Show("ERROR: No connection or no IMG tags");
 			return;
 		}
+		for (size_t i = 0; i < URLS.size(); i++)
+		{
+			if (!DownloadImgFromURL(URLS[i], Directory))
+			{
+				MessageBox::Show("ERROR: No connection or bad directory!");
+				return;
+			}
+		}
+
 		MessageBox::Show("Succesfully downloaded images!");
 	}
 private: System::Void RequestURL_Load(System::Object^ sender, System::EventArgs^ e) {
