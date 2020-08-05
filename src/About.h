@@ -139,11 +139,11 @@ namespace ImageScraper {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(141, 35);
+			this->label2->Location = System::Drawing::Point(139, 39);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(29, 13);
 			this->label2->TabIndex = 6;
-			this->label2->Text = L"V1.0";
+			this->label2->Text = L"V2.0";
 			// 
 			// About
 			// 

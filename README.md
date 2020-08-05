@@ -1,5 +1,5 @@
 # Image Scraper
-![Image Scraper Program](img/ProgramDisplay.png)<br/>
+![Image Scraper Program](img/ProgramDisplay.jpg)<br/>
 A simple program that allows you to download all images from a website. Entirely made in C++ with Visual Studio 2019.<br/>
 Released under MIT license. Made by PrismSight.<br/>
 **Note: This only downloads the images that are in the IMG tags**
