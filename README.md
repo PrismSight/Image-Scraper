@@ -11,12 +11,12 @@ Released under MIT license. Made by PrismSight.<br/>
 4. Select the folder you wish to put all the downloaded images in.
 5. Press the  "Get Image URLs" button.
 6. Select the images you would like to download.
-7. Press the "Download Images" button
+7. Press the "Download Images" button.
 
-### How to use
-
-### Build
-Use Visual Studio 2019 to build the program from source code.
+### How to build
+1. use CMake to build a Visual Studio Project. (Ignore the warning)
+2. Open the solution in Visual Studio.
+3. Build the ImageScraper project.
 
 ### To do
 * ~~Implement CMake~~
