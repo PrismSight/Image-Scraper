@@ -9,7 +9,11 @@ Released under MIT license. Made by PrismSight.<br/>
 2. Open the .exe.
 3. Type in the URL of the page you want to download all the images from.
 4. Select the folder you wish to put all the downloaded images in.
-5. Press the "Download Images" button
+5. Press the  "Get Image URLs" button.
+6. Select the images you would like to download.
+7. Press the "Download Images" button
+
+### How to use
 
 ### Build
 Use Visual Studio 2019 to build the program from source code.
