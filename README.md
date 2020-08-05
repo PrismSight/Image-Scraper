@@ -1,5 +1,5 @@
 # Image Scraper
-![Image Scraper Program](img/ProgramDisplay.png)<br/>
+![Image Scraper Program](img/ProgramDisplay.jpg)<br/>
 A simple program that allows you to download all images from a website. Entirely made in C++ with Visual Studio 2019.<br/>
 Released under MIT license. Made by PrismSight.<br/>
 **Note: This only downloads the images that are in the IMG tags**
@@ -9,10 +9,14 @@ Released under MIT license. Made by PrismSight.<br/>
 2. Open the .exe.
 3. Type in the URL of the page you want to download all the images from.
 4. Select the folder you wish to put all the downloaded images in.
-5. Press the "Download Images" button
+5. Press the  "Get Image URLs" button.
+6. Select the images you would like to download.
+7. Press the "Download Images" button.
 
-### Build
-Use Visual Studio 2019 to build the program from source code.
+### How to build
+1. use CMake to build a Visual Studio Project. (Ignore the warning)
+2. Open the solution in Visual Studio.
+3. Build the ImageScraper project.
 
 ### To do
 * ~~Implement CMake~~
