@@ -2,6 +2,7 @@
 #include <msclr\marshal_cppstd.h>
 #include "ImgScraper.h"
 #include "About.h"
+#include <algorithm>
 
 namespace ImageScraper {
 
@@ -44,6 +45,7 @@ namespace ImageScraper {
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::TextBox^ textBox2;
 	private: System::Windows::Forms::LinkLabel^ linkLabel1;
+	private: System::Windows::Forms::CheckedListBox^ checkedListBox1;
 
 
 	private:
@@ -66,6 +68,7 @@ namespace ImageScraper {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
+			this->checkedListBox1 = (gcnew System::Windows::Forms::CheckedListBox());
 			this->SuspendLayout();
 			// 
 			// textBox1
@@ -78,11 +81,12 @@ namespace ImageScraper {
 			// 
 			// button1
 			// 
+			this->button1->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
 			this->button1->BackColor = System::Drawing::SystemColors::Control;
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button1->ForeColor = System::Drawing::Color::Black;
-			this->button1->Location = System::Drawing::Point(157, 59);
+			this->button1->Location = System::Drawing::Point(157, 229);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(175, 32);
 			this->button1->TabIndex = 1;
@@ -122,7 +126,7 @@ namespace ImageScraper {
 			// 
 			this->linkLabel1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
 			this->linkLabel1->AutoSize = true;
-			this->linkLabel1->Location = System::Drawing::Point(437, 78);
+			this->linkLabel1->Location = System::Drawing::Point(437, 248);
 			this->linkLabel1->Name = L"linkLabel1";
 			this->linkLabel1->Size = System::Drawing::Size(35, 13);
 			this->linkLabel1->TabIndex = 5;
@@ -130,12 +134,21 @@ namespace ImageScraper {
 			this->linkLabel1->Text = L"About";
 			this->linkLabel1->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &RequestURL::linkLabel1_LinkClicked);
 			// 
+			// checkedListBox1
+			// 
+			this->checkedListBox1->FormattingEnabled = true;
+			this->checkedListBox1->Location = System::Drawing::Point(15, 61);
+			this->checkedListBox1->Name = L"checkedListBox1";
+			this->checkedListBox1->Size = System::Drawing::Size(457, 154);
+			this->checkedListBox1->TabIndex = 6;
+			// 
 			// RequestURL
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::Control;
-			this->ClientSize = System::Drawing::Size(484, 96);
+			this->ClientSize = System::Drawing::Size(484, 266);
+			this->Controls->Add(this->checkedListBox1);
 			this->Controls->Add(this->linkLabel1);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->button2);
@@ -181,16 +194,33 @@ namespace ImageScraper {
 			MessageBox::Show("ERROR: No connection or no IMG tags");
 			return;
 		}
+
+		
+		URLS.erase(std::unique(URLS.begin(), URLS.end()), URLS.end()); // Remove duplicates
+
+		this->checkedListBox1->Items->Clear();
 		for (size_t i = 0; i < URLS.size(); i++)
 		{
+			// std::string FileName = URLS[i].substr(URLS[i].find_last_of("/")+1, URLS[i].length()-1);
+			std::string FileName = URLS[i];
+			String^ str3 = gcnew String(FileName.c_str());
+			this->checkedListBox1->Items->Add(str3, true);
+		}
+		bool AllFilesDownloaded = true;
+		for (size_t i = 0; i < URLS.size(); i++)
+		{
+
 			if (!DownloadImgFromURL(URLS[i], Directory))
 			{
-				MessageBox::Show("ERROR: No connection or bad directory!");
-				return;
+				AllFilesDownloaded = false;
 			}
 		}
 
-		MessageBox::Show("Succesfully downloaded images!");
+
+		if(!AllFilesDownloaded)
+			MessageBox::Show("ERROR: Could not download one or more files!");
+		else
+			MessageBox::Show("Succesfully downloaded all images!");
 	}
 private: System::Void RequestURL_Load(System::Object^ sender, System::EventArgs^ e) {
 	TCHAR buffer[MAX_PATH] = { 0 };

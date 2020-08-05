@@ -14,7 +14,11 @@ using namespace std;
 [System::STAThread]
 int _tmain(int argc, _TCHAR* argv[])
 {
-	::ShowWindow(::GetConsoleWindow(), SW_HIDE); // Hide the console
+#ifndef _DEBUG
+	::ShowWindow(::GetConsoleWindow(), SW_HIDE); // Hide the console if debug
+#else
+	::ShowWindow(::GetConsoleWindow(), SW_SHOW); // Hide the console if debug
+#endif
 	ImageScraper::RequestURL^ xx = gcnew ImageScraper::RequestURL();
 	xx->ShowDialog();
 	return 0;

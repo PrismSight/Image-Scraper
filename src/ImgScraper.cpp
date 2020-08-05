@@ -62,11 +62,11 @@ std::vector<std::string> GetAllImgURLs(std::string URL)
 }
 bool DownloadImgFromURL(std::string URL, std::string Directory)
 {
-	std::string FileName = Directory + '\\' + URL.substr(URL.find_last_of("/"), URL.length());
+	std::string FileName = Directory + '\\' + URL.substr(URL.find_last_of("/")+1, URL.length()-1);
 	std::wstring FileNameW = std::wstring(FileName.begin(), FileName.end());
 	std::wstring stemp = std::wstring(URL.begin(), URL.end());
 
-	DWORD ftyp = GetFileAttributesA(Directory.c_str());
+	DWORD ftyp = GetFileAttributesA(Directory.c_str()); // Check the directory a second time, just to be sure!
 	if (ftyp == INVALID_FILE_ATTRIBUTES)
 		return false;
 
